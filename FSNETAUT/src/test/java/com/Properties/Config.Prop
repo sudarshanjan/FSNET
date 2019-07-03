@@ -1,0 +1,13 @@
+##IOS/ANDROID/WEB
+
+
+
+##chrome/firefox/IE
+Browser=chrome
+TypeofApplication=WEB
+
+QA_URL=http://qa.vanillavc.com
+
+
+username=ConfigUsername
+password=ConfigPass

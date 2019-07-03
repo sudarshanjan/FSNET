@@ -1,0 +1,7 @@
+username_id=username
+password_id=password
+
+
+loginBtn_Xpath=//button[@type='button']
+DownArrowLink_Xpath=//div[1]/div[3]/i
+logoutLink_Xpath=//a[contains(text(),'Log Out')]
