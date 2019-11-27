@@ -1,11 +1,6 @@
 package com.GenericFunctions;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -194,102 +189,6 @@ public class GenericFunctions extends Initilisation{
 		}
 		
 	}
-	
-	
-	public static void connectDB() throws SQLException, ClassNotFoundException {
-		
-		
-		  // Connect to database
-	    String hostName = "fsnetserverdb.database.windows.net"; // update me
-	    String dbName = "fsnet_qa_new"; // update me
-	    String user = "serveradmin"; // update me
-	    String password = "YUc8U\\UqkQb.[288"; // update me
-	    String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
-	        + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-	    Connection connection = null;
-		
-	    
-	    try {
-	        connection = DriverManager.getConnection(url);
-	        String schema = connection.getSchema();
-	        System.out.println("Successful connection - Schema: " + schema);
-
-	        System.out.println("Query data example:");
-	        System.out.println("=========================================");
-
-	        
-	        //For adding GP
-	        
-	       // http://qa.vanillavc.com/user/setPassword?code=260110&id=90
-	        	
-	        	//Executing SQL query and fetching the result
-	      		Statement st = connection.createStatement();
-	      		
-	      		String emailGP = "kempgp3@mailinator.com"; 
-	      		
-	      		//String sqlStr = "SELECT * FROM  Users WHERE email='"+emailGP+"'";
-	      		
-	      		String sqlStr = "SELECT emailConfirmCode, id FROM  Users WHERE email='"+emailGP+"';";
-	      		
-	      		
-	      		
-	      		ResultSet rs = st.executeQuery(sqlStr);
-	      		
-	      		
-	      		while (rs.next()) {
-	      			
-	      			String emailCode = rs.getString("emailConfirmCode");
-	      			String gpID = rs.getString("id");
-	      			System.out.println("username list is "+ emailCode);
-	      			System.out.println("GP ID is "+ gpID);
-	      	  		if(emailCode == null || emailCode.isEmpty() ) {
-	      	  			System.out.println("Email code is "+ emailCode+ ". User is alerady created");
-	      	  		}else{
-	      	  		
-	      	  			//String url1 = "http://qa.vanillavc.com/register/"+usernamesList+"";
-	      	  			String url1 = "http://qa.vanillavc.com/user/setPassword?code="+emailCode+"&id="+gpID+"";
-	      	  	  		System.out.println("URL is "+ url1);
-	      	  	  		driver.get(url1);
-	      	  	  		break;
-	      	  		}
-	      			
-	      		}
-	    	} catch (Exception e) {
-	    		 e.printStackTrace();
-	    	}
-	        
-	        
-	        
-	     //for adding LP or GP delegate
-	    /*	//Executing SQL query and fetching the result
-	  		Statement st = connection.createStatement();
-	  		String sqlStr = "SELECT * FROM  Users WHERE email='bobgpsign1@mailinator.com'";
-	  		
-	  		ResultSet rs = st.executeQuery(sqlStr);
-	  		
-	  		
-	  		while (rs.next()) {
-	  			
-	  			String usernamesList = rs.getString("emailConfirmCode");
-	  			System.out.println("username list is "+ usernamesList);
-	  	  		if(usernamesList == null){
-	  	  			
-	  	  		}else{
-	  	  		
-	  	  			String url1 = "http://qa.vanillavc.com/register/"+usernamesList+"";
-	  	  	  		System.out.println("URL is "+ url1);
-	  	  	  		driver.get(url1);
-	  	  	  		break;
-	  	  		}
-	  			
-	  		}
-		} catch (Exception e) {
-			 e.printStackTrace();
-		}*/
-	    
-	    
-	    
-		}
 	
 	
 	
